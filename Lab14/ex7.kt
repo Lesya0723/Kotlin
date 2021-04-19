@@ -13,3 +13,9 @@ fun kolNumbVzS(x: Int, y: Int, counter: Int) : Int = if (y == 0) counter else {
         kolNumbVzS(x, y - 1, counter + 1) else
         kolNumbVzS(x, y - 1, counter)
 }
+
+
+fun sum3(x: Int): Int = sum3(x,0)
+tailrec fun sum3(x: Int, sum: Int ): Int = if (x < 10) (if (x % 10 % 3 == 0) sum + x % 10 else sum)
+else (if (x % 10 % 3 == 0) sum3(x/10,sum + x % 10)
+else sum3(x/10,sum))
