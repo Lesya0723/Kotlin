@@ -24,3 +24,16 @@ fun ex7(a: List<Int>): List<Int>
     val aNew = num1 + num2
     return num3
 }
+
+fun ind2minElements(a: MutableList<Int>) {
+    val list = a.toCollection(mutableListOf<Int>())  
+    val min1 = list.min()                           
+    val ind1 = a.indexOf(min1)
+    while (list.contains(min1) == true)
+        list.remove(min1)
+    val min2 = list.min()
+    val ind2 = a.indexOf(min2)
+
+    println("ind1 = ${ind1 + 1} ")
+    println("ind2 = ${ind2 + 1}")
+}
