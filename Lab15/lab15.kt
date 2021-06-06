@@ -106,3 +106,55 @@ fun arithmeticMeanNoSimple(l: List<Int>, sum: Double, kol: Double, counter: Int,
         arithmeticMeanNoSimple (l, sum+l[counter], kol+1, counter+1, arithmeticMeanSimple)
     }  else arithmeticMeanNoSimple(l, sum, kol, counter + 1, arithmeticMeanSimple)
 
+fun makeList(): List<Double> {
+    val l: MutableList<Double> = mutableListOf()
+    return makeList(0.1,l,0).toList()
+}
+
+tailrec fun makeList(startEl: Double, l: MutableList<Double>, counter: Int): List<Double> = if (counter == 100000) l else {
+    println(counter)
+    makeList(startEl + 1, l.plus(startEl + 1).toMutableList(), counter + 1)
+}
+
+//fun main() {
+   /* val l = makeList()
+    val startTime = System.currentTimeMillis()
+    l.binarySearch { 5555 }
+    val totalTime = System.currentTimeMillis()
+    println("Время в списке: ${(totalTime - startTime)}")
+    val a = Array(100000,{i -> i + 1})
+    val startTime1 = System.currentTimeMillis()
+    a.binarySearch(5555)
+    val totalTime1 = System.currentTimeMillis()///1000/60
+    println("Время в массиве: ${(totalTime1 - startTime1)}")*/
+
+    /*7*//*val l = mutableListOf<Int>(3,45,7,8,1,14,5,32)
+    print( index2minElements(l))*/
+
+/*18*/
+    /*val l = mutableListOf<Int>(3,45,7,8,1,14,5,32)
+    elementsBeforeMin(l)*/
+
+    /*val l = mutableListOf<Int>(1,8,9,5,2,45,23,84,21,13)
+    print(kolLocMax(l))*/
+
+    /*20*/
+   /* val l = mutableListOf<Int>(1,4,5,7)
+    val missingNumders = mutableListOf<Int>()
+    println("before $l")
+    print("after ${missingNumbers(l,missingNumders)}")*/
+/*32*//*
+   val l = mutableListOf<Double>(1.1,2.1,3.5,3.66,2.45,1.01,5.05,5.45,5.001,5.015)
+    print(nearestNumber(l,5.1))*/
+
+    /*38*/
+    /*val l = mutableListOf<Int>(1,8,9,5,2,45,23,84,21,13)
+    print(kolElSegment(l,5, 25))*/
+
+    /*44*/
+    /*val l = mutableListOf<Double>(2.1,3.0,5.4,53.0,8.1)
+    print(series(l))*/
+    /*56*/
+
+
+//}
