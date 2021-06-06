@@ -45,3 +45,24 @@ fun elBMin(a: MutableList<Int>) {
     for (el in elementsBeforeMin)
         print("$el  ")
 }
+
+
+fun missN(max: Int, l: List<Int>, counter: Int, lNew: List<Int>): List<Int> = if (counter == max) lNew else
+    if (l.contains(counter) == false){
+        missgN(max, l, counter + 1,lNew.plus(counter))
+    }
+    else missN(max, l, counter + 1, lNew)
+
+fun missN(l: List<Int>, missN: List<Int>): List<Int> {
+    val min = l.min()!!.toInt()
+    val max = l.max()!!.toInt()
+
+    return missN(max,l,min + 1,missN)
+}
+
+fun printList(l: List<Int>) = printList(l, 0)
+fun printList(l: List<Int>, counter: Int): List<Int> = if (counter + 1 > l.size) l else
+    if (l.size > counter) { print("${l[counter]}  ")
+        printList(l, counter + 1) }
+else
+        printList(l, counter + 1)
