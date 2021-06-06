@@ -83,3 +83,9 @@ fun nearestNumber(l: List<Double>, nearestNumber: Double, r: Double, counter: In
 fun kolElSegment(l: List<Int>, a: Int, b: Int, counter: Int, kol: Int): Int = if (counter > l.size - 1) kol else
     if (l[counter] >= a && l[counter] <= b) kolElSegment(l,a,b,counter + 1, kol + 1)
     else kolElSegment(l,a,b,counter + 1, kol)
+
+    fun series(l: List<Double>): Boolean = series(l, 0, true)
+fun series(l: List<Double>, counter: Int, result: Boolean): Boolean = if (counter + 1 > l.size - 1) result else
+    if (l[counter] == l[counter].toInt().toDouble() && l[counter + 1] == l[counter + 1].toInt().toDouble()
+        || l[counter] != l[counter].toInt().toDouble() && l[counter + 1] != l[counter + 1].toInt().toDouble()) series(l, counter + 1, false)
+    else series(l, counter + 1, result)
