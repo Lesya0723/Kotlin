@@ -77,3 +77,9 @@ fun kolLoc(l: List<Int>, counter: Int, kol: Int): Int = if (counter + 1 > l.size
 fun nearestNumber(l: List<Double>, nearestNumber: Double, r: Double, counter: Int): Double = if (l.size - 1 < counter) nearestNumber else
     if (abs(l[counter] - r) < abs(nearestNumber - r)) nearestNumber(l, l[counter], r, counter + 1)
     else nearestNumber(l,nearestNumber,r,counter + 1)
+    
+    
+    fun kolElSegment(l: List<Int>, a: Int, b: Int) = kolElSegment(l, a, b, 0, 0)
+fun kolElSegment(l: List<Int>, a: Int, b: Int, counter: Int, kol: Int): Int = if (counter > l.size - 1) kol else
+    if (l[counter] >= a && l[counter] <= b) kolElSegment(l,a,b,counter + 1, kol + 1)
+    else kolElSegment(l,a,b,counter + 1, kol)
