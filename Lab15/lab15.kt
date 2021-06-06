@@ -66,3 +66,9 @@ fun printList(l: List<Int>, counter: Int): List<Int> = if (counter + 1 > l.size)
         printList(l, counter + 1) }
 else
         printList(l, counter + 1)
+
+        
+        fun kolLoc(l: List<Int>): Int = kolLoc(l,1,0)
+fun kolLoc(l: List<Int>, counter: Int, kol: Int): Int = if (counter + 1 > l.size - 1) kol else
+    if (l[counter - 1] < l[counter] && l[counter + 1] < l[counter]) kolLoc(l,counter + 2, kol + 1)
+    else kolLoc(l,counter + 1, kol)
