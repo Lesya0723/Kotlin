@@ -72,3 +72,8 @@ else
 fun kolLoc(l: List<Int>, counter: Int, kol: Int): Int = if (counter + 1 > l.size - 1) kol else
     if (l[counter - 1] < l[counter] && l[counter + 1] < l[counter]) kolLoc(l,counter + 2, kol + 1)
     else kolLoc(l,counter + 1, kol)
+
+    fun nearestNumber(l: List<Double>, r: Double) = nearestNumber(l, l[0],r,0)
+fun nearestNumber(l: List<Double>, nearestNumber: Double, r: Double, counter: Int): Double = if (l.size - 1 < counter) nearestNumber else
+    if (abs(l[counter] - r) < abs(nearestNumber - r)) nearestNumber(l, l[counter], r, counter + 1)
+    else nearestNumber(l,nearestNumber,r,counter + 1)
