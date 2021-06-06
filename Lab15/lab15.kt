@@ -89,3 +89,20 @@ fun series(l: List<Double>, counter: Int, result: Boolean): Boolean = if (counte
     if (l[counter] == l[counter].toInt().toDouble() && l[counter + 1] == l[counter + 1].toInt().toDouble()
         || l[counter] != l[counter].toInt().toDouble() && l[counter + 1] != l[counter + 1].toInt().toDouble()) series(l, counter + 1, false)
     else series(l, counter + 1, result)
+
+    
+    fun simpleNumber(x: Int): Boolean = simpleNumber(x, 2, true)
+tailrec fun simpleNumber(x: Int, counter: Int, result: Boolean): Boolean = if (counter  > sqrt(x.toDouble())) result else {
+    if (x % counter == 0) simpleNumber(x, counter + 1, false) else
+        simpleNumber(x, counter + 1, result)
+}
+
+fun arithmeticMeanSimple(l: List<Int>, sum: Double, kol: Double, counter: Int): Double = if (counter == l.size - 1) sum/kol else
+    if (simpleNumber(l[counter]) == true) arithmeticMeanSimple(l, sum + l[counter], kol + 1, counter + 1)
+    else arithmeticMeanSimple(l, sum, kol, counter + 1)
+
+fun arithmeticMeanNoSimple(l: List<Int>, sum: Double, kol: Double, counter: Int, arithmeticMeanSimple: Double): Double = if (counter == l.size) sum/kol else
+    if (simpleNumber(l[counter]) == false && l[counter] > arithmeticMeanSimple) {
+        arithmeticMeanNoSimple (l, sum+l[counter], kol+1, counter+1, arithmeticMeanSimple)
+    }  else arithmeticMeanNoSimple(l, sum, kol, counter + 1, arithmeticMeanSimple)
+
