@@ -37,3 +37,11 @@ fun ind2minElements(a: MutableList<Int>) {
     println("ind1 = ${ind1 + 1} ")
     println("ind2 = ${ind2 + 1}")
 }
+
+fun elBMin(a: MutableList<Int>) {
+    val min = a.min()
+    val ind = a.indexOf(min)
+    val elBMin = a.dropLast(a.size - ind)
+    for (el in elementsBeforeMin)
+        print("$el  ")
+}
