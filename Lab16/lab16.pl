@@ -95,3 +95,9 @@ fun findDates(s: String): List<String> {
    
     return listOfDates2.map { it.joinToString(" ") }
 }
+
+
+fun findRussianCharacters(s: String): Int {
+    val charactersCode = s.toCharArray().map { it.toInt() }
+    return charactersCode.count { ((it >= 1040) && (it <= 1103)) || (it == 1025) || (it == 1105) }
+}
