@@ -113,3 +113,43 @@ fun findMinNumber(s: String): Int {
     return listOfNumbers.minOrNull() ?: throw IllegalArgumentException("String doesn't contain numbers")
 }
 
+
+fun ex4_launchMenu() {
+    println("What task do you want to complete?\n")
+    println("0. exit")
+    println("1. find number of russian characters")
+    println("2. find lowercase english characters")
+    println("3. find min number of string\n")
+    print(">: ")
+
+    val listTaskNumbers = listOf("1", "2", "3")
+    val choice = readLine()
+
+    val s = if (listTaskNumbers.contains(choice)) {
+        print("\nInput string: ")
+        readLine()!!.toString()
+    }
+    else ""
+
+    when(choice) {
+        "0" -> return
+        "1" -> println("Number of russian characters: ${findRussianCharacters(s)}")
+        "2" -> println("Lowercase english characters: ${findLowercaseEnglishCharacters(s)}")
+        "3" -> {
+            try {
+                println("Min number of string: ${findMinNumber(s)}")
+            }
+            catch(e: IllegalArgumentException) {
+                println("Error: ${e.message}. Try again!")
+            }
+        }
+        else -> println("Error: there's no such task. Try again!")
+    }
+
+    println()
+    task4_launchMenu()
+}
+
+fun sortStringsByLength(listOfStrings: List<String>): List<String> {
+    return listOfStrings.sortedBy { it -> it.length }
+}
