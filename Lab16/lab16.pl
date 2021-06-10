@@ -40,3 +40,10 @@ fun ex2(s: String): String {
 
     return listOfWords.joinToString(" ")
 }
+
+
+fun ex2_8(s: String): Int {
+    val listOfWords = s.split(" ")
+    return if (s == "") 0
+    else listOfWords.count { it -> it.count() % 2 == 0 }
+}
