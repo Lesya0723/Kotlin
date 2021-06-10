@@ -106,3 +106,10 @@ fun findLowercaseEnglishCharacters(s: String): Set<Char> {
     val lowercaseCharacters = s.toCharArray().filter { (it.toInt() >= 97) && (it.toInt() <= 122) }
     return lowercaseCharacters.toSet()
 }
+fun findMinNumber(s: String): Int {
+    val regexNumbers = "\\d+".toRegex()
+    val listOfNumbers = regexNumbers.findAll(s).map { it.value.toInt() }.toList()
+
+    return listOfNumbers.minOrNull() ?: throw IllegalArgumentException("String doesn't contain numbers")
+}
+
