@@ -11,3 +11,18 @@ fun maxNumberInString(s: String, indexSt: Int, indexEnd: Int, numb: Int): Int = 
             maxNumberInString(s, indexSt,indexEnd + 1,s.drop(indexSt).toInt())
         else maxNumberInString(s, indexSt,indexEnd + 1, numb)
     }
+    
+    fun ex1() {
+    print("Input string: ")
+    val s = readLine()
+
+    try {
+        val listNumbers = s!!.split(" ").map { it.toInt() }
+        println("Max number: ${listNumbers.maxOrNull()}")
+
+    }
+    catch(e: NumberFormatException) {
+        println("Error: ${e.message}. Try again!\n")
+        task1()
+    }
+}
