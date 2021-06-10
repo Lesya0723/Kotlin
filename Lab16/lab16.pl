@@ -26,3 +26,17 @@ fun maxNumberInString(s: String, indexSt: Int, indexEnd: Int, numb: Int): Int = 
         task1()
     }
 }
+
+
+fun ex2(s: String): String {
+    fun replace(list: MutableList<String>, i: Int, j: Int) {
+        val temp = list[i]
+        list[i] = list[j]
+        list[j] = temp
+    }
+
+    val listOfWords = s.split(" ").toMutableList()
+    listOfWords.mapIndexed { i, _ ->  replace(listOfWords, i, Random.nextInt(0, listOfWords.size)) }
+
+    return listOfWords.joinToString(" ")
+}
