@@ -167,3 +167,95 @@ fun sortStringsByNumberOfWords(listOfStrings: List<String>): List<String> {
     val result = listOfStrings.withIndex().sortedBy { it -> listOfStrings2[it.index].split(" ").size }
     return result.map { it -> it.value }
 }
+
+
+fun ex7(listOfStrings: List<String>): List<String> {
+    fun findMaxQuantity(it: Iterator<String>, currentQ: Int = 0, max: Int = 0): Int {
+        return if (it.hasNext()) {
+            val value = it.next()
+            if ((value as? Int) != null) {
+                if (currentQ > max)
+                    findMaxQuantity(it, 0, currentQ)
+                else
+                    findMaxQuantity(it, 0, max)
+            }
+            else findMaxQuantity(it, currentQ + 1, max)
+        }
+        else {
+            if (currentQ > max)
+                currentQ
+            else max
+        }
+    }
+
+   
+    val regexSpaces = "\\s{2,}".toRegex()
+
+    val listOfStrings2 = listOfStrings.map { it ->
+        regexSpaces.replace(it, " ").dropWhile { it == ' ' }.dropLastWhile { it == ' ' }.split(" ") }
+
+    val result = listOfStrings.withIndex().sortedBy { it -> findMaxQuantity(listOfStrings2[it.index].iterator()) }
+    return result.map { it -> it.value }
+}
+fun task8_3(listOfStrings: List<String>): List<String> {
+    fun getLetterFrequency(letter: Char): Double =
+        when(letter) {
+            'E' -> 0.1286
+            'T' -> 0.0972
+            'A' -> 0.0796
+            'I' -> 0.0777
+            'N' -> 0.0751
+            'R' -> 0.0683
+            'O' -> 0.0662
+            'S' -> 0.0662
+            'H' -> 0.0539
+            'D' -> 0.0401
+            'L' -> 0.0351
+            'C' -> 0.0284
+            'F' -> 0.0262
+            'U' -> 0.0248
+            'M' -> 0.0243
+            'G' -> 0.0199
+            'P' -> 0.0181
+            'W' -> 0.018
+            'B' -> 0.016
+            'Y' -> 0.0152
+            'V' -> 0.0115
+            'K' -> 0.0041
+            'Q' -> 0.0017
+            'X' -> 0.0017
+            'J' -> 0.0016
+            'Z' -> 0.0005
+            else -> 0.0
+        }
+
+  
+    val englishStringsLetters = listOfStrings.map { it1 ->
+        it1.filter { it2 -> (it2.toInt() in 65..90) || (it2.toInt() in 97..122) }.toUpperCase() }
+
+ 
+    val mostCommonLetters = Array(listOfStrings.size) { ' ' }
+
+  
+    val frequency = Array(listOfStrings.size) { 0.0 }
+
+    englishStringsLetters.mapIndexed { i, string ->
+        
+        val letters = string.toSet()
+        val counts = Array(letters.size) { 0 }
+
+        
+        string.map { letter -> counts[letters.indexOf(letter)] += 1 }
+
+        val indexOfMaxLetter = counts.indexOf(counts.maxOrNull())
+        val maxLetter = letters.elementAt(indexOfMaxLetter)
+
+        mostCommonLetters[i] = maxLetter
+        frequency[i] = counts[indexOfMaxLetter] / (listOfStrings[i].count() * 1.0)
+    }
+
+    val result = listOfStrings.withIndex().sortedBy { it ->
+        abs(frequency[it.index] - getLetterFrequency(mostCommonLetters[it.index]))}
+
+    return result.map { it -> it.value }
+}
