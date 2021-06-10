@@ -153,3 +153,17 @@ fun ex4_launchMenu() {
 fun sortStringsByLength(listOfStrings: List<String>): List<String> {
     return listOfStrings.sortedBy { it -> it.length }
 }
+
+fun sortStringsByNumberOfWords(listOfStrings: List<String>): List<String> {
+ 
+    val regexSpaces = "\\s{2,}".toRegex()
+
+  
+    val listOfStrings2 = listOfStrings.map { it ->
+        regexSpaces.replace(it, " ").dropWhile { it == ' ' }.dropLastWhile { it == ' ' } }
+
+  
+
+    val result = listOfStrings.withIndex().sortedBy { it -> listOfStrings2[it.index].split(" ").size }
+    return result.map { it -> it.value }
+}
